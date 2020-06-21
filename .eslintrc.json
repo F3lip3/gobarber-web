@@ -23,20 +23,14 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier",
+    "eslint-plugin-import-helpers"
+  ],
   "rules": {
-    "react/jsx-props-no-spreading": "off",
-    "prettier/prettier": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true
-      }
-    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -45,10 +39,39 @@
         "tsx": "never"
       }
     ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "ignore",
+        "groups": [
+          "/^(react)/",
+          "module",
+          ["parent", "sibling", "index", "/~/", "/@/"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "import/prefer-default-export": "off",
     "no-console": [
       "error",
       {
         "allow": ["error", "info", "time", "timeEnd", "warn"]
+      }
+    ],
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
       }
     ]
   },
