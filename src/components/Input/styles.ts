@@ -24,6 +24,14 @@ export const Container = styled.div`
     &::placeholder {
       color: #636660;
     }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: #f4ede8;
+      -webkit-box-shadow: 0 0 0px 1000px #242129 inset;
+      box-shadow: 0 0 0px 1000px #242129 inset;
+    }
   }
 
   > svg {
