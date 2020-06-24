@@ -46,7 +46,8 @@
         "groups": [
           "/^(react)/",
           "module",
-          ["parent", "sibling", "index", "/~/", "/@/"]
+          "/@/",
+          ["parent", "sibling", "index", "/~/"]
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
@@ -58,6 +59,7 @@
         "allow": ["error", "info", "time", "timeEnd", "warn"]
       }
     ],
+    "no-unused-expressions": "off",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       1,
