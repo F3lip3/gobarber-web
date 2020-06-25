@@ -15,6 +15,7 @@ interface SignInCredentials {
 interface AuthContextProps {
   user: Record<string, unknown>;
   signIn: (credentials: SignInCredentials) => Promise<void>;
+  signOut: () => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -45,8 +46,15 @@ export const AuthProvider: React.FC = ({ children }) => {
     setData({ token, user });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@GoBarber:token');
+    localStorage.removeItem('@GoBarber:user');
+
+    setData({} as AuthState);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
@@ -56,7 +64,7 @@ export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error('Hook useAuth failed to load. AuthProvider is required');
+    throw new Error('Hook useAuth must be used within a AuthProvider');
   }
 
   return context;
