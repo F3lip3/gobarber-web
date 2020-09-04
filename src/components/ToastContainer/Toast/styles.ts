@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   type?: 'info' | 'error' | 'success';
-  noDescription: boolean;
+  description: number;
 }
 
 const toastTypeVariations = {
@@ -64,7 +64,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   }
 
   ${props =>
-    props.noDescription &&
+    props.description &&
     css`
       align-items: center;
 
