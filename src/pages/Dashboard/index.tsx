@@ -1,9 +1,148 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Dashboard: React.FC = () => (
-  <div>
-    <h1>Dashboard</h1>
-  </div>
-);
+import { FiPower, FiClock } from 'react-icons/fi';
+import logoImg from '../../assets/logo.svg';
+import { useAuth } from '../../hooks/auth';
+import {
+  Container,
+  Header,
+  HeaderContent,
+  Profile,
+  Content,
+  Schedule,
+  NextAppointment,
+  Section,
+  Appointment,
+  Calendar
+} from './styles';
+
+const Dashboard: React.FC = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const { signOut, user } = useAuth();
+
+  return (
+    <Container>
+      <Header>
+        <HeaderContent>
+          <img src={logoImg} alt="GoBarber" />
+
+          <Profile>
+            <img src={user.avatar_url} alt={user.name} />
+            <div>
+              <span>Bem-vindo,</span>
+              <strong>{user.name}</strong>
+            </div>
+          </Profile>
+
+          <button type="button" onClick={signOut}>
+            <FiPower />
+          </button>
+        </HeaderContent>
+      </Header>
+
+      <Content>
+        <Schedule>
+          <h1>Horários Agendados</h1>
+          <p>
+            <span>Hoje</span>
+            <span>Dia 06</span>
+            <span>Segunda-feira</span>
+          </p>
+
+          <NextAppointment>
+            <strong>Atendimento a seguir</strong>
+            <div>
+              <img
+                src="https://avatars3.githubusercontent.com/u/2260686?s=460&u=db56ae499e020629de440282c0d9b85dd4f09213&v=4"
+                alt="Felipe Humberto Teixeira"
+              />
+              <strong>Felipe Humberto Teixeira</strong>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+            </div>
+          </NextAppointment>
+
+          <Section>
+            <strong>Manhã</strong>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+              <div>
+                <img
+                  src="https://avatars3.githubusercontent.com/u/2260686?s=460&u=db56ae499e020629de440282c0d9b85dd4f09213&v=4"
+                  alt="Felipe Humberto Teixeira"
+                />
+                <strong>Felipe Humberto Teixeira</strong>
+              </div>
+            </Appointment>
+            <Appointment>
+              <span>
+                <FiClock />
+                09:00
+              </span>
+              <div>
+                <img
+                  src="https://avatars3.githubusercontent.com/u/2260686?s=460&u=db56ae499e020629de440282c0d9b85dd4f09213&v=4"
+                  alt="Felipe Humberto Teixeira"
+                />
+                <strong>Felipe Humberto Teixeira</strong>
+              </div>
+            </Appointment>
+          </Section>
+
+          <Section>
+            <strong>Tarde</strong>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                14:00
+              </span>
+              <div>
+                <img
+                  src="https://avatars3.githubusercontent.com/u/2260686?s=460&u=db56ae499e020629de440282c0d9b85dd4f09213&v=4"
+                  alt="Felipe Humberto Teixeira"
+                />
+                <strong>Felipe Humberto Teixeira</strong>
+              </div>
+            </Appointment>
+            <Appointment>
+              <span>
+                <FiClock />
+                15:00
+              </span>
+              <div>
+                <img
+                  src="https://avatars3.githubusercontent.com/u/2260686?s=460&u=db56ae499e020629de440282c0d9b85dd4f09213&v=4"
+                  alt="Felipe Humberto Teixeira"
+                />
+                <strong>Felipe Humberto Teixeira</strong>
+              </div>
+            </Appointment>
+            <Appointment>
+              <span>
+                <FiClock />
+                16:00
+              </span>
+              <div>
+                <img
+                  src="https://avatars3.githubusercontent.com/u/2260686?s=460&u=db56ae499e020629de440282c0d9b85dd4f09213&v=4"
+                  alt="Felipe Humberto Teixeira"
+                />
+                <strong>Felipe Humberto Teixeira</strong>
+              </div>
+            </Appointment>
+          </Section>
+        </Schedule>
+        <Calendar />
+      </Content>
+    </Container>
+  );
+};
 
 export default Dashboard;
